@@ -1,0 +1,65 @@
+---
+layout: default
+title: Playbooks
+description: Office-ready AI workflows you can reuse.
+---
+
+<main class="dashboard-shell py-4 py-lg-5">
+  <div class="container-xxl">
+    <div class="row g-4">
+      <div class="col-lg-3 col-xl-3">
+        <aside class="sidebar-panel d-none d-lg-block position-sticky top-offset">
+          <div class="sidebar-section">
+            <div class="sidebar-label">Playbook views</div>
+            <a class="sidebar-link active" href="{{ '/playbook/' | relative_url }}"><span>All episodes</span><span class="soft-pill">Index</span></a>
+            <a class="sidebar-link" href="{{ '/library/' | relative_url }}"><span>Prompt Library</span><span class="soft-pill">Tools</span></a>
+            <a class="sidebar-link" href="{{ '/' | relative_url }}"><span>Dashboard</span><span class="soft-pill">Home</span></a>
+          </div>
+          <div class="sidebar-note">
+            <strong>Playbook rule</strong>
+            <p class="mb-0">Use playbooks for repeatable processes. Start with a workflow, then support it with a prompt or template from the library.</p>
+          </div>
+        </aside>
+      </div>
+      <div class="col-lg-9 col-xl-9">
+        <section class="hero-card slim-hero mb-4">
+          <span class="hero-kicker">Playbooks</span>
+          <h1 class="hero-title">Office-ready AI workflows you can reuse.</h1>
+          <p class="hero-text">Each episode is designed to feel more like an operating guide than a blog post: practical, repeatable, and grounded in human review.</p>
+          <div class="d-flex flex-wrap gap-2 mt-3">
+            <span class="soft-pill">Workflow-first</span>
+            <span class="soft-pill">LinkedIn series</span>
+            <span class="soft-pill">Privacy-aware</span>
+          </div>
+        </section>
+
+        <section class="dashboard-block" data-search-group>
+          <div class="section-head">
+            <div>
+              <h2>Episodes</h2>
+              <p>Use the search bar above to filter episodes by task, format, or workflow.</p>
+            </div>
+          </div>
+
+          <div class="row g-3 searchable-grid">
+            {% assign pb = site.pages | where_exp: "p","p.url contains '/playbook/'" %}
+            {% assign episodes = pb | where_exp: "p","p.episode" | sort: "episode" | reverse %}
+            {% for post in episodes %}
+            <div class="col-md-6 col-xl-6 searchable-item" data-search="{{ post.title | downcase }} {{ post.subtitle | strip_html | downcase }} {{ post.category | downcase }} office ai playbook workflow">
+              <a class="dashboard-card card-playbook" href="{{ post.url | relative_url }}">
+                <span class="card-tag">Episode {{ post.episode }}</span>
+                <h3>{{ post.title }}</h3>
+                <p>{{ post.subtitle | default: post.description }}</p>
+                <div class="card-meta">
+                  <span>{{ post.read_time | default: 'Quick read' }}</span>
+                  <span>{{ post.category | default: 'Workflow' }}</span>
+                </div>
+              </a>
+            </div>
+            {% endfor %}
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</main>

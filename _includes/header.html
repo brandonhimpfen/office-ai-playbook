@@ -1,0 +1,33 @@
+<header class="site-header border-bottom">
+  <nav class="navbar navbar-expand-lg py-3">
+    <div class="container-xxl align-items-center">
+      <a class="navbar-brand d-flex align-items-center gap-3 me-lg-4" href="{{ '/' | relative_url }}">
+        <img class="brand-logo" src="{{ '/assets/img/bhicon-transparent-blue.png' | relative_url }}" alt="{{ site.title }} logo">
+        <span class="brand-copy">
+          <strong>{{ site.title }}</strong>
+          <small>A calm dashboard for learning AI at work.</small>
+        </span>
+      </a>
+
+      <button class="navbar-toggler border-0 shadow-none px-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#siteSidebar" aria-controls="siteSidebar" aria-label="Open navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="topNav">
+        <div class="top-search-wrap mx-lg-auto my-3 my-lg-0">
+          <label class="search-shell" for="globalSearchInput">
+            <i class="bi bi-search"></i>
+            <input id="globalSearchInput" type="search" placeholder="Search playbooks, prompts, templates, and safe-use guides" autocomplete="off">
+          </label>
+        </div>
+
+        <ul class="navbar-nav ms-lg-auto align-items-lg-center gap-lg-2 top-nav-links">
+          <li class="nav-item"><a class="nav-link" href="{{ '/' | relative_url }}">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ '/playbook/' | relative_url }}">Playbooks</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ '/library/' | relative_url }}">Prompt Library</a></li>
+          <li class="nav-item ms-lg-2"><a class="btn btn-primary rounded-pill px-3 nav-cta" href="{{ '/library/starter-pack/' | relative_url }}">Starter Pack</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

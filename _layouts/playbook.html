@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  {% include head.html %}
+</head>
+<body>
+  {% include header.html %}
+
+  <main class="dashboard-shell py-4 py-lg-5">
+    <div class="container-xxl">
+      <div class="row g-4">
+        <div class="col-lg-3 col-xl-3">
+          <aside class="sidebar-panel d-none d-lg-block position-sticky top-offset">
+            <div class="sidebar-section">
+              <div class="sidebar-label">Playbooks</div>
+              <a class="sidebar-link" href="{{ '/playbook/' | relative_url }}"><span>All episodes</span><span class="soft-pill">Index</span></a>
+              <a class="sidebar-link" href="{{ '/' | relative_url }}"><span>Dashboard</span><span class="soft-pill">Home</span></a>
+              <a class="sidebar-link" href="{{ '/library/' | relative_url }}"><span>Prompt Library</span><span class="soft-pill">Tools</span></a>
+            </div>
+            <div class="sidebar-note">
+              <strong>Calm rule</strong>
+              <p class="mb-0">AI can accelerate office work, but it still needs human judgement, fact checking, and privacy discipline.</p>
+            </div>
+            {% if page.supporting_library %}
+            <div class="sidebar-section mt-3">
+              <div class="sidebar-label">Supporting library</div>
+              {% for it in page.supporting_library %}
+              <a class="sidebar-link" href="{{ it.url | relative_url }}"><span>{{ it.label }}</span><span class="soft-pill">{{ it.tag }}</span></a>
+              {% endfor %}
+            </div>
+            {% endif %}
+          </aside>
+        </div>
+        <div class="col-lg-9 col-xl-8">
+          <div class="content-frame">
+            <div class="content-hero mb-4">
+              <div class="eyebrow mb-3"><a href="{{ '/playbook/' | relative_url }}">Playbook</a> <span>•</span> <span>Episode {{ page.episode | default: '?' }}</span></div>
+              <h1 class="page-title">{{ page.title }}</h1>
+              {% if page.subtitle %}<p class="page-subtitle">{{ page.subtitle }}</p>{% endif %}
+              <div class="d-flex flex-wrap gap-2 mt-3">
+                {% if page.read_time %}<span class="soft-pill">{{ page.read_time }}</span>{% endif %}
+                {% if page.category %}<span class="soft-pill">{{ page.category }}</span>{% endif %}
+                {% if page.tagline %}<span class="soft-pill">{{ page.tagline }}</span>{% endif %}
+              </div>
+            </div>
+
+            <article class="prose-content">
+              {{ content | markdownify }}
+            </article>
+
+            <div class="d-flex flex-wrap gap-3 mt-4 pt-2">
+              <a class="btn btn-outline-primary rounded-pill px-4" href="{{ '/playbook/' | relative_url }}">Back to playbooks</a>
+              <a class="btn btn-primary rounded-pill px-4" href="{{ '/library/' | relative_url }}">Open library tools</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  {% include footer.html %}
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+</body>
+</html>
